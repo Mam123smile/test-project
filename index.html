@@ -1,17 +1,33 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Test Project — Mam123smile</title>
+  <title>Test Project — คู่มือฝึกใช้งาน Git & GitHub</title>
   <style>
-    :root {
+    :root[data-theme="dark"] {
       --bg: #0f172a;
       --card: #1e293b;
+      --border: rgba(255, 255, 255, 0.12);
       --text: #f8fafc;
       --muted: #94a3b8;
+      --code-bg: #0b1120;
       --accent: #38bdf8;
       --success: #22c55e;
+      --btn-bg: #0284c7;
+      --btn-text: #ffffff;
+    }
+    :root[data-theme="light"] {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --muted: #475569;
+      --code-bg: #f1f5f9;
+      --accent: #0284c7;
+      --success: #16a34a;
+      --btn-bg: #0284c7;
+      --btn-text: #ffffff;
     }
     * {
       box-sizing: border-box;
@@ -27,56 +43,169 @@
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
     .card {
       background-color: var(--card);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border);
       border-radius: 1rem;
-      padding: 2.5rem;
-      max-width: 520px;
+      padding: 2rem;
+      max-width: 640px;
       width: 100%;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
-      text-align: center;
+      box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.25);
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
     }
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
       background: rgba(34, 197, 94, 0.15);
       color: var(--success);
       padding: 0.35rem 0.85rem;
       border-radius: 999px;
-      font-size: 0.875rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      margin-bottom: 1.25rem;
+    }
+    .theme-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.4rem 0.85rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 0.85rem;
     }
     h1 {
-      font-size: 1.75rem;
-      margin-bottom: 0.75rem;
-      color: var(--text);
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
     }
     p {
       color: var(--muted);
       line-height: 1.6;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
-    code {
-      background: rgba(15, 23, 42, 0.8);
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .step {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 0.6rem;
+      padding: 0.75rem 0.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      transition: all 0.2s ease;
+    }
+    .step.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
+    }
+    .step strong {
+      display: block;
+      margin-bottom: 0.25rem;
       color: var(--accent);
-      padding: 0.2rem 0.5rem;
-      border-radius: 0.375rem;
-      font-size: 0.9rem;
+    }
+    .controls {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .action-btn {
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border: none;
+      padding: 0.55rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .action-btn:hover {
+      opacity: 0.92;
+    }
+    .terminal {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 0.6rem;
+      padding: 0.85rem 1rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.85rem;
+      color: var(--accent);
     }
   </style>
 </head>
 <body>
   <main class="card">
-    <div class="badge">● เชื่อมต่อ GitHub สำเร็จ</div>
+    <div class="header">
+      <div class="badge">● อัปเดตเวอร์ชันที่ 2 สำเร็จ</div>
+      <button class="theme-btn" id="themeToggle" onclick="toggleTheme()">☀️ สลับโหมดสว่าง/มืด</button>
+    </div>
+
     <h1>Mam123smile / test-project</h1>
     <p>
-      โครงสร้างโปรเจกต์ตั้งต้นพร้อมใช้งานแล้ว สามารถแก้ไขไฟล์
-      <code>index.html</code> หรือ <code>README.md</code> เพื่อทดสอบระบบ Git ได้ทันที
+      ทดลองกดปุ่มด้านล่างเพื่อจำลองขั้นตอนการทำงานของ Git ตั้งแต่แก้ไขไฟล์ในเครื่อง ไปจนถึงอัปโหลดขึ้น GitHub
     </p>
+
+    <div class="steps">
+      <div class="step active" id="step-0">
+        <strong>1. Working Dir</strong>
+        แก้ไขไฟล์ในเครื่อง
+      </div>
+      <div class="step" id="step-1">
+        <strong>2. Staging</strong>
+        เตรียมไฟล์ (add)
+      </div>
+      <div class="step" id="step-2">
+        <strong>3. Local Repo</strong>
+        บันทึกจุดเซฟ (commit)
+      </div>
+      <div class="step" id="step-3">
+        <strong>4. GitHub</strong>
+        อัปโหลด (push)
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="action-btn" onclick="setStage(1)">1. git add .</button>
+      <button class="action-btn" onclick="setStage(2)">2. git commit</button>
+      <button class="action-btn" onclick="setStage(3)">3. git push</button>
+      <button class="theme-btn" onclick="setStage(0)">รีเซ็ต</button>
+    </div>
+
+    <div class="terminal" id="terminalOutput">
+      $ สถานะปัจจุบัน: แก้ไขไฟล์ index.html เสร็จแล้ว (กด "1. git add ." เพื่อเตรียมไฟล์)
+    </div>
   </main>
+
+  <script>
+    const messages = [
+      '$ สถานะปัจจุบัน: แก้ไขไฟล์ index.html เสร็จแล้ว (กด "1. git add ." เพื่อเตรียมไฟล์)',
+      '$ git add . → เตรียมไฟล์เข้าสู่ Staging Area เรียบร้อย! (ต่อไปกด "2. git commit")',
+      '$ git commit -m "Update index.html" → บันทึกประวัติลงเครื่องเรียบร้อย! (ต่อไปกด "3. git push")',
+      '$ git push origin main → อัปโหลดโค้ดขึ้น GitHub (Mam123smile/test-project) สำเร็จ!'
+    ];
+
+    function setStage(index) {
+      for (let i = 0; i < 4; i++) {
+        document.getElementById('step-' + i).classList.toggle('active', i === index);
+      }
+      document.getElementById('terminalOutput').textContent = messages[index];
+    }
+
+    function toggleTheme() {
+      const root = document.documentElement;
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+    }
+  </script>
 </body>
 </html>
