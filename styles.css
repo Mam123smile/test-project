@@ -1,0 +1,701 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root[data-theme="album90s"] {
+  --bg-page: #fff6e0;
+  --bg-surface: #ffffff;
+  --bg-album: #fef2d0;
+  --bg-slot: #fffbf0;
+  --bg-header: #ffcc00;
+  --text-primary: #18181b;
+  --text-secondary: #3f3f46;
+  --text-muted: #52525b;
+  --border-ink: #18181b;
+  --accent-pink: #ff2a6d;
+  --accent-teal: #00a896;
+  --accent-blue: #1d4ed8;
+  --accent-yellow: #ffcc00;
+  --accent-orange: #ff6b35;
+  --accent-green: #16a34a;
+  --shadow-hard: 4px 4px 0px #18181b;
+  --shadow-hard-lg: 6px 6px 0px #18181b;
+  --shadow-hard-sm: 2px 2px 0px #18181b;
+}
+
+:root[data-theme="neon90s"] {
+  --bg-page: #130924;
+  --bg-surface: #1f1138;
+  --bg-album: #291647;
+  --bg-slot: #170b2b;
+  --bg-header: #ff2a6d;
+  --text-primary: #f8fafc;
+  --text-secondary: #e2e8f0;
+  --text-muted: #cbd5e1;
+  --border-ink: #00f5d4;
+  --accent-pink: #ff2a6d;
+  --accent-teal: #00f5d4;
+  --accent-blue: #38bdf8;
+  --accent-yellow: #fee440;
+  --accent-orange: #ff9e00;
+  --accent-green: #22c55e;
+  --shadow-hard: 4px 4px 0px #ff2a6d;
+  --shadow-hard-lg: 6px 6px 0px #00f5d4;
+  --shadow-hard-sm: 2px 2px 0px #fee440;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'IBM Plex Sans Thai', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Top Ribbon */
+.school-ribbon {
+  background-color: #18181b;
+  color: #fee440;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 0.45rem 1rem;
+  border-bottom: 2px solid var(--border-ink);
+  letter-spacing: 0.3px;
+}
+
+/* Header */
+.site-header {
+  background-color: var(--bg-header);
+  border-bottom: 3px solid #18181b;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.header-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: #18181b;
+}
+
+.logo-sticker {
+  background: var(--accent-pink);
+  color: #ffffff;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.35rem 0.7rem;
+  border: 2.5px solid #18181b;
+  box-shadow: 3px 3px 0px #18181b;
+  transform: rotate(-3deg);
+}
+
+.brand-title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #18181b;
+}
+
+:root[data-theme="neon90s"] .brand-title,
+:root[data-theme="neon90s"] .brand-subtitle {
+  color: #ffffff;
+}
+
+.brand-subtitle {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #27272a;
+  display: block;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.retro-btn {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 0.48rem 0.9rem;
+  border: 2px solid #18181b;
+  box-shadow: 3px 3px 0px #18181b;
+  background-color: #ffffff;
+  color: #18181b;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.retro-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #18181b;
+}
+
+.retro-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #18181b;
+}
+
+.retro-btn.lucky-trigger {
+  background-color: var(--accent-orange);
+  color: #ffffff;
+}
+
+.retro-btn.cart-trigger {
+  background-color: var(--accent-teal);
+  color: #ffffff;
+}
+
+:root[data-theme="neon90s"] .retro-btn.cart-trigger {
+  color: #130924;
+}
+
+.count-pill {
+  background: #fee440;
+  color: #18181b;
+  border: 1.5px solid #18181b;
+  padding: 0.05rem 0.45rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+/* Container */
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* Album Cover / Hero */
+.album-hero {
+  margin-top: 1.75rem;
+  margin-bottom: 1.5rem;
+  background: var(--bg-album);
+  border: 3px solid var(--border-ink);
+  box-shadow: var(--shadow-hard-lg);
+  padding: 1.75rem;
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (max-width: 860px) {
+  .album-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+.album-badge {
+  display: inline-block;
+  background: var(--accent-pink);
+  color: #ffffff;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.2rem 0.7rem;
+  border: 2px solid #18181b;
+  box-shadow: 2px 2px 0px #18181b;
+  margin-bottom: 0.75rem;
+}
+
+.album-hero h1 {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.65rem;
+}
+
+.album-hero p {
+  color: var(--text-secondary);
+  font-size: 0.96rem;
+  margin-bottom: 1.15rem;
+}
+
+/* Sticker Progress Tracker Box */
+.stamp-passport {
+  background: var(--bg-surface);
+  border: 2.5px solid var(--border-ink);
+  box-shadow: var(--shadow-hard);
+  padding: 1.25rem;
+}
+
+.passport-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.65rem;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+}
+
+.stamp-slots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.stamp-slot {
+  border: 2px dashed var(--border-ink);
+  background: var(--bg-slot);
+  padding: 0.4rem 0.25rem;
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.stamp-slot.stamped {
+  border-style: solid;
+  background: var(--accent-yellow);
+  color: #18181b;
+  box-shadow: 2px 2px 0px #18181b;
+}
+
+.passport-Status {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background: var(--bg-album);
+  padding: 0.45rem 0.65rem;
+  border: 1.5px solid var(--border-ink);
+}
+
+/* Decade Timeline Bar */
+.timeline-bar {
+  background: var(--bg-surface);
+  border: 2.5px solid var(--border-ink);
+  box-shadow: var(--shadow-hard);
+  padding: 0.9rem 1.15rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.year-pills {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.year-btn {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 0.4rem 0.8rem;
+  border: 2px solid var(--border-ink);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.year-btn.active,
+.year-btn:hover {
+  background: var(--accent-pink);
+  color: #ffffff;
+  box-shadow: 2px 2px 0px #18181b;
+}
+
+.search-input {
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+  font-size: 0.88rem;
+  padding: 0.45rem 0.8rem;
+  border: 2px solid var(--border-ink);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  min-width: 230px;
+}
+
+/* Sticker Album Grid (Timeline Cards) */
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+  gap: 1.35rem;
+  margin-bottom: 2.5rem;
+}
+
+.sticker-card {
+  background: var(--bg-surface);
+  border: 3px solid var(--border-ink);
+  box-shadow: var(--shadow-hard);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.15s ease;
+}
+
+.sticker-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-hard-lg);
+}
+
+.sticker-header {
+  background: var(--bg-album);
+  border-bottom: 2.5px solid var(--border-ink);
+  padding: 0.45rem 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+
+.year-tag {
+  background: #18181b;
+  color: #fee440;
+  padding: 0.1rem 0.55rem;
+  font-family: 'Space Mono', monospace;
+}
+
+.sticker-frame {
+  height: 165px;
+  margin: 0.85rem 0.85rem 0;
+  background: var(--bg-slot);
+  border: 2.5px dashed var(--border-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.sticker-card.collected .sticker-frame {
+  border-style: solid;
+  background: radial-gradient(circle, var(--bg-album) 0%, var(--bg-surface) 100%);
+}
+
+.stamp-ribbon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--accent-green);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border: 1.5px solid #18181b;
+  transform: rotate(4deg);
+}
+
+.sticker-body {
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.sub-category {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-pink);
+  margin-bottom: 0.2rem;
+}
+
+.sticker-title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.sticker-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  flex: 1;
+}
+
+.story-btn {
+  width: 100%;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.4rem;
+  margin-bottom: 0.75rem;
+  background: var(--bg-album);
+  color: var(--text-primary);
+  border: 2px solid var(--border-ink);
+  cursor: pointer;
+}
+
+.story-btn:hover {
+  background: var(--accent-yellow);
+  color: #18181b;
+}
+
+.sticker-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.7rem;
+  border-top: 2px dashed var(--border-ink);
+}
+
+.price-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent-pink);
+}
+
+.buy-btn {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  background: var(--accent-yellow);
+  color: #18181b;
+  border: 2px solid #18181b;
+  box-shadow: 2px 2px 0px #18181b;
+  padding: 0.42rem 0.85rem;
+  cursor: pointer;
+}
+
+.buy-btn:hover {
+  background: var(--accent-pink);
+  color: #ffffff;
+}
+
+/* Modals & Drawers */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(24, 24, 27, 0.72);
+  z-index: 70;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.modal-card {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 3px solid var(--border-ink);
+  box-shadow: var(--shadow-hard-lg);
+  max-width: 540px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  background: var(--bg-header);
+  color: #18181b;
+  padding: 0.85rem 1.15rem;
+  border-bottom: 3px solid #18181b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.modal-body {
+  padding: 1.25rem;
+}
+
+/* Schoolyard Lucky Draw Grid */
+.lucky-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+  margin: 1rem 0;
+}
+
+.lucky-ticket {
+  background: var(--accent-pink);
+  color: #ffffff;
+  border: 2.5px solid #18181b;
+  box-shadow: 3px 3px 0px #18181b;
+  padding: 0.85rem 0.4rem;
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.lucky-ticket:hover {
+  transform: scale(1.04);
+  background: var(--accent-orange);
+}
+
+.lucky-ticket.opened {
+  background: var(--accent-yellow);
+  color: #18181b;
+}
+
+/* Cart Drawer & Checkout Form */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(24, 24, 27, 0.68);
+  z-index: 65;
+  display: none;
+  justify-content: flex-end;
+}
+
+.drawer-backdrop.open {
+  display: flex;
+}
+
+.cart-drawer {
+  background: var(--bg-surface);
+  border-left: 3px solid var(--border-ink);
+  width: 100%;
+  max-width: 460px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.1rem;
+}
+
+.cart-item {
+  background: var(--bg-page);
+  border: 2px solid var(--border-ink);
+  padding: 0.65rem 0.75rem;
+  margin-bottom: 0.65rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qty-btn {
+  width: 26px;
+  height: 26px;
+  border: 1.5px solid var(--border-ink);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.checkout-form {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px dashed var(--border-ink);
+}
+
+.form-group {
+  margin-bottom: 0.75rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  border: 2px solid var(--border-ink);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.88rem;
+}
+
+.qr-preview {
+  background: #ffffff;
+  color: #18181b;
+  border: 2px solid #18181b;
+  padding: 0.75rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.drawer-footer {
+  padding: 1rem 1.15rem;
+  border-top: 3px solid var(--border-ink);
+  background: var(--bg-album);
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  margin-bottom: 0.25rem;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0.5rem 0 0.75rem;
+  padding-top: 0.45rem;
+  border-top: 1.5px solid var(--border-ink);
+}
+
+.submit-order-btn {
+  width: 100%;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.7rem;
+  background: var(--accent-pink);
+  color: #ffffff;
+  border: 2px solid #18181b;
+  box-shadow: 4px 4px 0px #18181b;
+  cursor: pointer;
+}
+
+/* Footer */
+.site-footer {
+  border-top: 3px solid var(--border-ink);
+  background: var(--bg-album);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+}
