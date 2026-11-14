@@ -1,197 +1,340 @@
 <!DOCTYPE html>
-<html lang="th" data-theme="dark">
+<html lang="th" data-theme="neon90s">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Test Project — คู่มือฝึกใช้งาน Git & GitHub</title>
+  <title>Test Project — 90s Retro Edition</title>
   <style>
-    :root[data-theme="dark"] {
-      --bg: #0f172a;
-      --card: #1e293b;
-      --border: rgba(255, 255, 255, 0.12);
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --code-bg: #0b1120;
-      --accent: #38bdf8;
-      --success: #22c55e;
-      --btn-bg: #0284c7;
-      --btn-text: #ffffff;
+    :root[data-theme="neon90s"] {
+      --bg-color: #14052b;
+      --bg-grid: rgba(0, 245, 212, 0.14);
+      --window-bg: #220b45;
+      --titlebar-bg: linear-gradient(90deg, #ff2a85 0%, #7b2cbf 50%, #00bbf9 100%);
+      --titlebar-text: #ffffff;
+      --border-color: #00f5d4;
+      --shadow-color: #ff2a85;
+      --text-main: #fff8ff;
+      --text-muted: #d8b4f8;
+      --code-bg: #0c021c;
+      --accent-cyan: #00f5d4;
+      --accent-pink: #ff2a85;
+      --accent-yellow: #fee440;
+      --btn-1: #ff2a85;
+      --btn-2: #00bbf9;
+      --btn-3: #00f5d4;
+      --btn-text: #14052b;
     }
-    :root[data-theme="light"] {
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --border: #e2e8f0;
-      --text: #0f172a;
-      --muted: #475569;
-      --code-bg: #f1f5f9;
-      --accent: #0284c7;
-      --success: #16a34a;
-      --btn-bg: #0284c7;
-      --btn-text: #ffffff;
+
+    :root[data-theme="memphis90s"] {
+      --bg-color: #008080;
+      --bg-grid: rgba(255, 255, 255, 0.15);
+      --window-bg: #fffdf5;
+      --titlebar-bg: linear-gradient(90deg, #000080 0%, #1084d0 100%);
+      --titlebar-text: #ffffff;
+      --border-color: #111111;
+      --shadow-color: #111111;
+      --text-main: #111111;
+      --text-muted: #334155;
+      --code-bg: #111111;
+      --accent-cyan: #0066ff;
+      --accent-pink: #ff3366;
+      --accent-yellow: #ffcc00;
+      --btn-1: #ff3366;
+      --btn-2: #ffcc00;
+      --btn-3: #00e6ac;
+      --btn-text: #111111;
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
+      font-family: "Courier New", Courier, ui-monospace, monospace, sans-serif;
+      background-color: var(--bg-color);
+      background-image:
+        linear-gradient(var(--bg-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+      background-size: 28px 28px;
+      color: var(--text-main);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
-      transition: background-color 0.2s ease, color 0.2s ease;
+      transition: all 0.25s ease;
     }
-    .card {
-      background-color: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 2rem;
-      max-width: 640px;
+
+    .retro-window {
+      background-color: var(--window-bg);
+      border: 3px solid var(--border-color);
+      box-shadow: 8px 8px 0px var(--shadow-color);
+      max-width: 680px;
       width: 100%;
-      box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
     }
-    .header {
+
+    .title-bar {
+      background: var(--titlebar-bg);
+      color: var(--titlebar-text);
+      padding: 0.6rem 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid var(--border-color);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      font-size: 0.9rem;
+    }
+
+    .window-controls {
+      display: flex;
+      gap: 0.35rem;
+    }
+
+    .win-dot {
+      width: 22px;
+      height: 22px;
+      background: #fee440;
+      color: #111;
+      border: 2px solid #111;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 900;
+    }
+
+    .win-dot.close {
+      background: #ff2a85;
+      color: #fff;
+    }
+
+    .content {
+      padding: 1.75rem;
+    }
+
+    .top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
       margin-bottom: 1.25rem;
     }
-    .badge {
+
+    .badge-90s {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      background: rgba(34, 197, 94, 0.15);
-      color: var(--success);
-      padding: 0.35rem 0.85rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 600;
+      gap: 0.45rem;
+      background: var(--accent-yellow);
+      color: #111111;
+      border: 2px solid #111111;
+      box-shadow: 3px 3px 0px var(--accent-pink);
+      padding: 0.3rem 0.8rem;
+      font-size: 0.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
     }
+
     .theme-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 0.4rem 0.85rem;
-      border-radius: 0.5rem;
+      background: var(--window-bg);
+      color: var(--text-main);
+      border: 2px solid var(--border-color);
+      box-shadow: 3px 3px 0px var(--shadow-color);
+      padding: 0.45rem 0.9rem;
       cursor: pointer;
-      font-size: 0.85rem;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.82rem;
+      transition: transform 0.1s ease;
     }
+
+    .theme-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px var(--shadow-color);
+    }
+
     h1 {
-      font-size: 1.6rem;
+      font-size: 1.75rem;
       margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 0px var(--accent-pink);
+      letter-spacing: -0.5px;
     }
+
+    :root[data-theme="memphis90s"] h1 {
+      text-shadow: 2px 2px 0px var(--accent-yellow);
+    }
+
     p {
-      color: var(--muted);
+      color: var(--text-muted);
       line-height: 1.6;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.35rem;
+      font-size: 0.95rem;
     }
+
     .steps {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.5rem;
-      margin-bottom: 1.25rem;
+      gap: 0.65rem;
+      margin-bottom: 1.35rem;
     }
+
+    @media (max-width: 560px) {
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     .step {
-      background: var(--code-bg);
-      border: 1px solid var(--border);
-      border-radius: 0.6rem;
+      background: var(--window-bg);
+      border: 2px solid var(--border-color);
       padding: 0.75rem 0.5rem;
       text-align: center;
       font-size: 0.8rem;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
     }
+
     .step.active {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
+      background: var(--accent-yellow);
+      color: #111111;
+      border-color: #111111;
+      box-shadow: 4px 4px 0px var(--accent-pink);
+      transform: translate(-2px, -2px);
+      font-weight: 700;
     }
+
     .step strong {
       display: block;
       margin-bottom: 0.25rem;
-      color: var(--accent);
+      color: var(--accent-cyan);
+      font-size: 0.85rem;
     }
+
+    .step.active strong {
+      color: #111111;
+      text-decoration: underline;
+    }
+
     .controls {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.65rem;
       flex-wrap: wrap;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
     }
+
     .action-btn {
-      background: var(--btn-bg);
-      color: var(--btn-text);
-      border: none;
-      padding: 0.55rem 1rem;
-      border-radius: 0.5rem;
+      border: 2px solid #111111;
+      box-shadow: 4px 4px 0px #111111;
+      padding: 0.6rem 1.05rem;
       cursor: pointer;
-      font-weight: 600;
+      font-family: inherit;
+      font-weight: 900;
       font-size: 0.85rem;
+      color: var(--btn-text);
+      transition: transform 0.1s ease;
     }
-    .action-btn:hover {
-      opacity: 0.92;
+
+    .action-btn.b1 { background: var(--btn-1); color: #ffffff; }
+    .action-btn.b2 { background: var(--btn-2); color: #111111; }
+    .action-btn.b3 { background: var(--btn-3); color: #111111; }
+
+    .action-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #111111;
     }
+
     .terminal {
       background: var(--code-bg);
-      border: 1px solid var(--border);
-      border-radius: 0.6rem;
-      padding: 0.85rem 1rem;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 0.85rem;
-      color: var(--accent);
+      border: 2px solid var(--border-color);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+      padding: 0.95rem 1rem;
+      font-size: 0.88rem;
+      color: #00f5d4;
+      line-height: 1.5;
+    }
+
+    .marquee-bar {
+      margin-top: 1.25rem;
+      padding: 0.45rem 0.75rem;
+      background: #111111;
+      color: #fee440;
+      border: 2px solid var(--border-color);
+      font-size: 0.78rem;
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
   </style>
 </head>
 <body>
-  <main class="card">
-    <div class="header">
-      <div class="badge">● อัปเดตเวอร์ชันที่ 2 สำเร็จ</div>
-      <button class="theme-btn" id="themeToggle" onclick="toggleTheme()">☀️ สลับโหมดสว่าง/มืด</button>
-    </div>
-
-    <h1>Mam123smile / test-project</h1>
-    <p>
-      ทดลองกดปุ่มด้านล่างเพื่อจำลองขั้นตอนการทำงานของ Git ตั้งแต่แก้ไขไฟล์ในเครื่อง ไปจนถึงอัปโหลดขึ้น GitHub
-    </p>
-
-    <div class="steps">
-      <div class="step active" id="step-0">
-        <strong>1. Working Dir</strong>
-        แก้ไขไฟล์ในเครื่อง
-      </div>
-      <div class="step" id="step-1">
-        <strong>2. Staging</strong>
-        เตรียมไฟล์ (add)
-      </div>
-      <div class="step" id="step-2">
-        <strong>3. Local Repo</strong>
-        บันทึกจุดเซฟ (commit)
-      </div>
-      <div class="step" id="step-3">
-        <strong>4. GitHub</strong>
-        อัปโหลด (push)
+  <main class="retro-window">
+    <div class="title-bar">
+      <span>💾 MAM123SMILE_TEST_PROJECT.EXE — [90s RETRO EDITION]</span>
+      <div class="window-controls">
+        <span class="win-dot">_</span>
+        <span class="win-dot">□</span>
+        <span class="win-dot close">X</span>
       </div>
     </div>
 
-    <div class="controls">
-      <button class="action-btn" onclick="setStage(1)">1. git add .</button>
-      <button class="action-btn" onclick="setStage(2)">2. git commit</button>
-      <button class="action-btn" onclick="setStage(3)">3. git push</button>
-      <button class="theme-btn" onclick="setStage(0)">รีเซ็ต</button>
-    </div>
+    <div class="content">
+      <div class="top-bar">
+        <div class="badge-90s">★ 90s Cyber &amp; Memphis Vibe ★</div>
+        <button class="theme-btn" id="themeToggle" onclick="toggleTheme()">
+          🕹️ สลับโหมด: 90s Neon / Win95 Teal
+        </button>
+      </div>
 
-    <div class="terminal" id="terminalOutput">
-      $ สถานะปัจจุบัน: แก้ไขไฟล์ index.html เสร็จแล้ว (กด "1. git add ." เพื่อเตรียมไฟล์)
+      <h1>Mam123smile / test-project</h1>
+      <p>
+        ยินดีต้อนรับสู่ยุค 90s! ทดลองกดปุ่มด้านล่างเพื่อจำลองขั้นตอนการทำงานของ Git ตั้งแต่แก้ไขไฟล์ในเครื่อง ไปจนถึงอัปโหลดขึ้น GitHub ออนไลน์
+      </p>
+
+      <div class="steps">
+        <div class="step active" id="step-0">
+          <strong>1. Working Dir</strong>
+          แก้ไขไฟล์ในเครื่อง
+        </div>
+        <div class="step" id="step-1">
+          <strong>2. Staging</strong>
+          เตรียมไฟล์ (add)
+        </div>
+        <div class="step" id="step-2">
+          <strong>3. Local Repo</strong>
+          บันทึกเซฟ (commit)
+        </div>
+        <div class="step" id="step-3">
+          <strong>4. GitHub</strong>
+          อัปโหลด (push)
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="action-btn b1" onclick="setStage(1)">1. git add .</button>
+        <button class="action-btn b2" onclick="setStage(2)">2. git commit</button>
+        <button class="action-btn b3" onclick="setStage(3)">3. git push</button>
+        <button class="theme-btn" onclick="setStage(0)">↺ รีเซ็ต</button>
+      </div>
+
+      <div class="terminal" id="terminalOutput">
+        C:\TEST-PROJECT&gt; สถานะปัจจุบัน: แก้ไขไฟล์ธีมยุค 90s เสร็จแล้ว (กด "1. git add ." เพื่อเริ่ม!)
+      </div>
+
+      <div class="marquee-bar">
+        ✦ POWERED BY GITHUB PAGES • RETRO 1990s COLOR PALETTE • MAM123SMILE ✦
+      </div>
     </div>
   </main>
 
   <script>
     const messages = [
-      '$ สถานะปัจจุบัน: แก้ไขไฟล์ index.html เสร็จแล้ว (กด "1. git add ." เพื่อเตรียมไฟล์)',
-      '$ git add . → เตรียมไฟล์เข้าสู่ Staging Area เรียบร้อย! (ต่อไปกด "2. git commit")',
-      '$ git commit -m "Update index.html" → บันทึกประวัติลงเครื่องเรียบร้อย! (ต่อไปกด "3. git push")',
-      '$ git push origin main → อัปโหลดโค้ดขึ้น GitHub (Mam123smile/test-project) สำเร็จ!'
+      'C:\\TEST-PROJECT> สถานะปัจจุบัน: แก้ไขไฟล์ธีมยุค 90s เสร็จแล้ว (กด "1. git add ." เพื่อเริ่ม!)',
+      'C:\\TEST-PROJECT> git add . → เตรียมไฟล์เข้าสู่ Staging Area เรียบร้อย! (ต่อไปกด "2. git commit")',
+      'C:\\TEST-PROJECT> git commit -m "90s Retro Theme" → บันทึกเซฟลงเครื่องแล้ว! (ต่อไปกด "3. git push")',
+      'C:\\TEST-PROJECT> git push origin main → อัปโหลดขึ้น GitHub ออนไลน์สำเร็จ! 🕹️✨'
     ];
 
     function setStage(index) {
@@ -203,7 +346,7 @@
 
     function toggleTheme() {
       const root = document.documentElement;
-      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      const next = root.getAttribute('data-theme') === 'neon90s' ? 'memphis90s' : 'neon90s';
       root.setAttribute('data-theme', next);
     }
   </script>
